@@ -1,0 +1,142 @@
+CMPE 401  
+CMPE 401  Instructor-defined Project 1 
+Advanced Object Detection and Comparative Study using 
+YOLOv11 (or YOLOv26) 
+1. Project Title 
+Design, Optimization, and Comparative Evaluation of Modern YOLO Models for Real-World 
+Object Detection 
+________________________________________________________________________________ 
+2.  Background & Motivation 
+Real-time object detection in computer vision plays a central role in: 
+• Autonomous driving 
+• Robotics 
+• Smart surveillance 
+• Industrial inspection 
+• Smart cities 
+The YOLO (You Only Look Once) family, maintained by Ultralytics, is one of the most widely used 
+real-time detection frameworks in industry. 
+Modern versions such as YOLOv11 (and recent updates such as YOLOv26) aim to improve: 
+• Speed–accuracy trade-off 
+• Small-object detection capability 
+• Model efficiency 
+• Training stability 
+This project focuses on building a complete experimental pipeline using YOLOv11 (or YOLOv26), 
+performing structured experiments, systematic analysis, and multi-version comparisons. 
+https://docs.ultralytics.com/models/yolo11/ 
+https://docs.ultralytics.com/models/yolo26/ 
+https://github.com/ultralytics/ultralytics 
+________________________________________________________________________________ 
+3. Project Objectives 
+Students will: 
+1. Understand the YOLO detection pipeline 
+2. Fine-tune a modern YOLO model 
+3. Design and execute structured experiments 
+4. Analyze training and validation loss behavior 
+5. Diagnose overfitting and underfitting 
+6. Perform iterative model improvements 
+7. Compare multiple YOLO versions quantitatively 
+8. Present reproducible research results via Github 
+1 of 4  
+CMPE 401  
+4.  Dataset 
+VisDrone (Recommended) 
+https://github.com/VisDrone/VisDrone-Dataset 
+You can choose the first image detection subset. 
+Features: 
+• Small objects 
+• Dense scenes 
+• Real-world complexity 
+• Suitable for small-object analysis 
+Please challenge your final model using the testset-challenge. This will serve as a competition. 
+Projects that demonstrate top-performing model in the class on the challenge test set, supported 
+by rigorous experimental analysis and clear justification of design choices, will be considered as 
+exceeding expectations in grade. 
+________________________________________________________________________________ 
+5. Required Technical Project Tasks 
+Part I – Baseline Model 
+• Train YOLOv11 or YOLOv26 as baseline model 
+Record Result: 
+• Training loss curve 
+• Validation loss curve 
+2 of 4  
+CMPE 401  
+• mAP 
+• Precision 
+• Recall 
+• etc 
+Part II – Loss Curve and Fitting Analysis 
+Students should: 
+• Plot training vs validation loss 
+• Identify convergence behavior 
+• Discuss overfitting 
+• Discuss underfitting 
+• Explain causes 
+Discussion must reference: 
+• Dataset size 
+• Model capacity 
+Part III – Structured Experimental Design 
+Students must design at least ONE ROUND controlled experiments. 
+Each experiment must: 
+• Clearly state experimental settings 
+• Report quantitative results 
+• Provide analysis 
+Suggested variables: 
+• Model size (n / s / m) 
+• Image resolution 
+• Data augmentation strategy 
+• Learning rate scheduling 
+• Batch size 
+• Training epochs 
+• etc 
+Part IV – Iterative Model Improvement 
+Under Part III, students must perform at least ONE improvement cycles grounded in deep 
+learning principles. 
+Each improvement must follow: 
+Baseline -> Experimental Settings -> Controlled Modification -> Evaluation -> Analysis -> 
+Conclusion 
+Examples: 
+• Regularization 
+• Normalization 
+• Weight Initialization 
+• Learning rate schedule 
+• Overfitting control 
+• etc 
+3 of 4  
+CMPE 401  
+Each iteration must include: 
+• Quantitative comparison table 
+• Performance discussion 
+• Justification of change 
+Part V – Multi-Version YOLO Comparison 
+Students must compare YOLOv11 (or YOLOv26) with at least THREE other YOLO versions. 
+Possible comparison models: 
+• YOLOv8 
+• YOLOv5 
+• YOLOv9 
+• YOLOv10 
+• etc 
+Comparison must include: 
+• mAP 
+• Precision 
+• Recall 
+• Model size 
+• Training time 
+• Inference speed 
+• etc, other performance, like confusion matrix 
+A structured comparison table is required. 
+____________________________________________________________ 
+6. Project Summary 
+This project requires students to design, train, analyze, and systematically evaluate a modern object 
+detection system using YOLOv11 (or YOLOv26). The focus is not only on model performance, but 
+on understanding training dynamics, experimental design, and comparative analysis. 
+Students must: 
+• Build a complete detection pipeline 
+• Analyze training and validation loss behavior 
+• Diagnose overfitting and underfitting 
+• Conduct controlled experiments 
+• Perform theory-driven improvements 
+• Compare multiple YOLO versions quantitatively 
+• Present reproducible results via GitHub 
+The goal is to develop both engineering implementation skills and a rigorous understanding of modern 
+deep learning systems through structured experimentation and critical analysis. 
+4 of 4  

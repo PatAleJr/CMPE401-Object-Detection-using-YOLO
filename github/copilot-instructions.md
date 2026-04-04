@@ -1,0 +1,1 @@
+This is a university machine learning project. Refer to assignment.txt for the details. assignment.txt was originally a pdf, but I copy-pasted the text into a .txt file for you to read. I am choosing to use YOLO26.
