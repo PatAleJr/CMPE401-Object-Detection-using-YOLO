@@ -179,3 +179,8 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# yolov3u model that was too big
+runs/detect/train_visdrone_yolov3u/weights/best.pt
+runs/detect/train_visdrone_yolov3u/weights/last.pt
+yolov3u.pt

@@ -9,11 +9,11 @@ import torch
 from ultralytics import YOLO
 
 
-RUN_NAME = "train_visdrone_yolo26n-01"
+RUN_NAME = "train_visdrone_yolov000"
 DATASET_YAML = "visdrone.yaml"
-WEIGHTS = "yolo26n.pt"
-EPOCHS = 50
-IMG_SIZE = 512
+WEIGHTS = "yolov8n.pt"
+EPOCHS = 100
+IMG_SIZE = 640
 
 
 def main() -> None:
@@ -40,6 +40,9 @@ def main() -> None:
         name=RUN_NAME,
         exist_ok=True,
         plots=True,
+        patience=10,
+        batch=-1,
+        cache='disk'
     )
 
     print("Done training. Starting validation...")
