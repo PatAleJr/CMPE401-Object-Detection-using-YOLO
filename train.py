@@ -9,9 +9,9 @@ import torch
 from ultralytics import YOLO
 
 
-RUN_NAME = "train_visdrone_yolov000"
+RUN_NAME = "train_visdrone_yolov000" # Where you want the results to be stored
 DATASET_YAML = "visdrone.yaml"
-WEIGHTS = "yolov8n.pt"
+WEIGHTS = "yolov8n.pt" # Will automatically download if not present in the current directory
 EPOCHS = 100
 IMG_SIZE = 640
 

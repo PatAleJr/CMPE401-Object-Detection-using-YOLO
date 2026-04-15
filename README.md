@@ -4,15 +4,19 @@
 In this project, I iteratively trained a YOLO26 model on the visdrone data set. I used my local resources (RTX 3070) for training and validation. Then, I compared the results from the YOLOv26 model to a YOLOv5 model, YOLOv8 model and YOLOv3u model.
 
 ### Where to find results of each iteration
-In the folder runs/detect, there is a subfolder for each iteration titled "train_visdrone_yolo{version}-{iteration}". There you can find several files indicating the results of that iteration.
+In the folder runs/detect, there is a subfolder for each iteration titled "train_visdrone_yolo{version}-{iteration}". There you can find several files indicating the arguments used to train the model, the best and last weights, and results of that iteration.
 
-Results.png shows the plots of training loss, validation loss, mAP, Precision and Recall. Other important files are:
-  - weights/best.pt : the best trained model
-  - weights/last.pt : the model resulting from the last step in training
-  - args.yaml : the arguments used to train the model
-  - confusion_matrix.png : the confusion matrix
+The models for yolov3u are not in this github repository because they are too big (over 100MB). To train them, run train.py with WEIGHTS = "yolov3u.pt"
 
-To save space in this README, I will only discuss the moist relevant metrics to each iteration. You can find the above mentionned files for each iteration for more details.
+### How to reproduce
+
+1. Clone this repository
+2. Install the requirements outlined in requirements.txt
+3. Install the visdrone data set from here: https://github.com/VisDrone/VisDrone-Dataset?tab=readme-ov-file 
+3. Update the paths in visdrone.yaml to point to where you installed the above files
+4. YOLO uses a different annotation scheme than what's provided in visdrone, so run convert_visdrone_to_yolo_and_check.py with the correct path to the dataset
+5. Run train.py with parameters and variables modified to train and validate your desired model
+6. To run inference tests, run predict.py
 
 ## Baseline model
 For my first iteration (folder train_visdrone_yolo26n-01), I trained the yolov26n model using mostly default settings. The two parameters I changed were to use 50 epochs, and an image size of 512. I chose this to have a short training time for rapid iteration. 
@@ -77,29 +81,27 @@ This yielded better results overall compared to all other iteration with image s
 - Iterations 4 and 5 show that 'rect=True' improves training time at the cost of slightly worse results
 
 ## Comparing to other models
-I compared YOLOv26n to YOLOv3u, YOLOv5n and YOLOv8n. For a fair comparison, I used the arguments as in iteration 2. The results are highlighted below:
+I compared YOLOv26n to YOLOv3u, YOLOv5n and YOLOv8n. For a fair comparison, I used the arguments as in iteration 2. The results are shown in the table below. I decided to include iteration 3 of YOLO26n because I consider it my best model.
 
-| Metric | v26n (Itr 2) | v5n | v8n | v3u |
-|--------|--------------|---------|---------|---------|
-| mAP50 | 0.334 | 0.335 | 0.344 | 0.470 |
-| mAP50-95 | 0.189 | 0.192 | 0.198 | 0.289 |
-| Precision | 0.445 | 0.438 | 0.446 | 0.577 |
-| Recall | 0.331 | 0.339 | 0.344 | 0.442 |
-| Training Time | 2h 35m | 2h 30m | 2h 8m | 8h 20m |
-| Epochs | 62 | 100 | 99 | 82 |
-| Optimal Batch Size (RTX3070) | 12 | 11 | 11 | 4 |
-| Avg inference time GPU (ms) | 18.77 | 14.94 | 13.98 | 24.78 | 
-| Avg inference time CPU (ms) | 35.16 | 34.70 | 31.67 | 394.63 |
-| Model Size (kB) | 5.294 | 5,139 | 6,094 | 202,892 |
+| Metric | v26n (Itr 2) | v5n | v8n | v3u | v26n (Itr 3) |
+|--------|--------------|---------|---------|---------|---|
+| mAP50 | 0.334 | 0.335 | 0.344 | 0.470 | 0.395 |
+| mAP50-95 | 0.189 | 0.192 | 0.198 | 0.289 | 0.244 |
+| Precision | 0.445 | 0.438 | 0.446 | 0.577 | 0.492 |
+| Recall | 0.331 | 0.339 | 0.344 | 0.442 | 0.382 |
+| Training Time | 2h 35m | 2h 30m | 2h 8m | 8h 20m | 9h 2m |
+| Epochs | 62 | 100 | 99 | 82 | 100 |
+| Optimal Batch Size (RTX3070) | 12 | 11 | 11 | 4 | 3 |
+| Avg inference time GPU (ms) | 18.77 | 14.94 | 13.98 | 24.78 | 19.01 |
+| Avg inference time CPU (ms) | 35.16 | 34.70 | 31.67 | 394.63 | 35.41 |
+| Model Size (MB) | 5.294 | 5.139 | 6.094 | 202.892 | 5.302 |
 
 Inference times were measured using predict.py and were taken across an average of 100 random samples. The random pictures were the same for each trial (I used the same seed).
 
 ### Discussion
-For this dataset, with an image size of 640, it seems YOLOv8 is the best overall, with v26n and v5 obtaining comparable results. YOLOv3u performs far better than the other three in mAP, precision and recall, but has much higher model size, training time and inference time.
 
-It may seem counterintuitive that YOLOv26n (the latest model) performs the worst. Although YOLOv26 is a newer architecture, the nano variant did not outperform YOLOv5n or YOLOv8n on VisDrone under the same training recipe. This suggests that, for this dataset, model capacity and training configuration had a larger impact than model age alone.
+YOLOv3u performs far better than the other three in mAP, precision and recall, but has much higher model size, training time and inference time. Since the objective of a YOLO model is real time object detection, 394ms inference time is too slow for me to consider it my best model. So, using an image size of 640, it seems YOLOv8 is the best overall, with v26n and v5 obtaining comparable results. It may seem counterintuitive that YOLOv26n (the latest model) performs the worst. Although YOLOv26 is a newer architecture, the nano variant did not outperform YOLOv5n or YOLOv8n on VisDrone under the same training recipe. This suggests that, for this dataset, model capacity and training configuration had a larger impact than model age alone.
 
-### Important note
-The models for yolov3u are not in this github repository because they are too big (over 100MB). To train them, run train.py with WEIGHTS = "yolov3u.pt"
+If we include the larger image size of 1024, YOLOv26n iteration 3 is the best model overall. One could estimate that increasing the image size for the other versions could yield better performance, but that would require more testing. So, YOLOv26n iteration 3 is my final model.
 
 ## Conclusion

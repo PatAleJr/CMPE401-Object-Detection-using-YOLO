@@ -11,7 +11,7 @@ import yaml
 from ultralytics import YOLO
 
 
-DEFAULT_WEIGHTS = "runs/detect/train_visdrone_yolov3u/weights/best.pt"
+DEFAULT_WEIGHTS = "runs/detect/train_visdrone_yolo26n-03/weights/best.pt"
 DEFAULT_DATA_YAML = "visdrone.yaml"
 DEFAULT_SAMPLE_SIZE = 100
 DEFAULT_IMG_SIZE = 640
@@ -66,8 +66,8 @@ def main() -> None:
 	rng = random.Random(DEFAULT_SEED)
 	sampled_images = rng.sample(all_val_images, sample_count)
 
-	# device = "cuda:0" if torch.cuda.is_available() else "cpu"
-	device = "cpu"
+	device = "cuda:0" if torch.cuda.is_available() else "cpu"
+	#device = "cpu"
 	model = YOLO(str(weights_path))
 
 	print(f"Model: {weights_path}")
