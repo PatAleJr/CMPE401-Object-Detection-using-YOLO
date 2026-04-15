@@ -75,13 +75,8 @@ These decisions were informed by the Ultralytics guide for data augmentation (ht
 #### Evaluation and Analysis
 This yielded better results overall compared to all other iteration with image size of 640. However, the results were not as good as in iteration 3 with image size of 1024.
 
-## Key Take-aways
-- Iteration 3 proved that higher image size will improve your mAP the most, but will also greatly increase training time.
-- Iteration 6 proved that data augmentation can provide small improvements
-- Iterations 4 and 5 show that 'rect=True' improves training time at the cost of slightly worse results
-
 ## Comparing to other models
-I compared YOLOv26n to YOLOv3u, YOLOv5n and YOLOv8n. For a fair comparison, I used the arguments as in iteration 2. The results are shown in the table below. I decided to include iteration 3 of YOLO26n because I consider it my best model.
+I compared YOLOv26n to YOLOv3u, YOLOv5n and YOLOv8n. For a fair comparison, I used the arguments as in iteration 2. The results are shown in the table below. I decided to include iteration 3 of YOLO26n because it is my best model.
 
 | Metric | v26n (Itr 2) | v5n | v8n | v3u | v26n (Itr 3) |
 |--------|--------------|---------|---------|---------|---|
@@ -105,3 +100,9 @@ YOLOv3u performs far better than the other three in mAP, precision and recall, b
 If we include the larger image size of 1024, YOLOv26n iteration 3 is the best model overall. One could estimate that increasing the image size for the other versions could yield better performance, but that would require more testing. So, YOLOv26n iteration 3 is my final model.
 
 ## Conclusion
+In this project I compared different versions and iterations of YOLO models for object detection in the visdrone dataset. Key take-aways are:
+- Higher image size matters the most for datasets with many small objects. This was proven by iterations 2 and 3 where mAP increased the most
+- For this application, 'rect=True' improves training time at the cost of slightly worse results. This is proven in iterations 4 and 5.
+- Data augmentation can provide small improvements (iteration 6)
+- When iterating, it's important to change 1 thing at a time to isolate what caused improvements or regressions
+- There is a trade-off between accuracy and inference time. This is highlighted when comparing YOLOv3u to other YOLO models.
