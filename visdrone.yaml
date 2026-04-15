@@ -2,6 +2,7 @@
 # Each dataset root is expected to contain matching images/ and labels/ folders.
 train: ../../../ML-Data/VisDrone2019-DET-train/images
 val: ../../../ML-Data/VisDrone2019-DET-val/images
+eval: ../../../ML-Data/VisDrone2019-DET-test-dev/images
 
 names:
   0: pedestrian

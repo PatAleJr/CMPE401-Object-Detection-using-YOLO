@@ -2,7 +2,7 @@ from pathlib import Path
 import cv2
 
 
-DATASET_ROOT = Path("../../../ML-Data/VisDrone2019-DET-val").resolve()
+DATASET_ROOT = Path("../../../ML-Data/VisDrone2019-DET-test-dev").resolve()
 IMAGES_DIR = DATASET_ROOT / "images"
 ANNOTATIONS_DIR = DATASET_ROOT / "annotations"
 YOLO_LABELS_DIR = DATASET_ROOT / "labels"
