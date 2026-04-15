@@ -99,6 +99,16 @@ YOLOv3u performs far better than the other three in mAP, precision and recall, b
 
 If we include the larger image size of 1024, YOLOv26n iteration 3 is the best model overall. One could estimate that increasing the image size for the other versions could yield better performance, but that would require more testing. So, YOLOv26n iteration 3 is my final model.
 
+## Final evaluation
+
+I evaluated YOLOv26n iteration 3 using the test-dev dataset. The results are as follows:
+
+| P | R | mAP50 | mAP50-95 |
+|---|---|-------|----------|
+| 0.438 | 0.337 | 0.306 | 0.178 |
+
+The confusion matrix and other stats can be found in runs/detect/evaluation-01 subfolder.
+
 ## Conclusion
 In this project I compared different versions and iterations of YOLO models for object detection in the visdrone dataset. Key take-aways are:
 - Higher image size matters the most for datasets with many small objects. This was proven by iterations 2 and 3 where mAP increased the most
